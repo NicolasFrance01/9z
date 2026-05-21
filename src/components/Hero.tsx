@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { audioEngine } from '../utils/audioEngine';
 
 interface HeroProps {
     onCtaClick: (sectionId: string) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
-    // Definimos la fecha del próximo partido: 3 días, 14 horas, 45 minutos a partir de ahora, o una fecha fija futura
+    // Definimos la fecha del próximo partido
     const [timeLeft, setTimeLeft] = useState({
         days: 3,
         hours: 14,
@@ -15,7 +14,6 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
     });
 
     useEffect(() => {
-        // Obtenemos una fecha futura coherente
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() + 3);
         targetDate.setHours(targetDate.getHours() + 14);
@@ -40,12 +38,8 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
         return () => clearInterval(timer);
     }, []);
 
-    const playHover = () => audioEngine.playHover();
-    const playClick = () => audioEngine.playClick();
-
     const handleAction = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, sectionId: string) => {
         e.preventDefault();
-        playClick();
         onCtaClick(sectionId);
     };
 
@@ -55,32 +49,30 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             
             {/* Left Content Column */}
             <div className="hero-content">
-                <div className="tag-glitch">#9ZFAMILY | OFICIAL PORTAL</div>
+                <div className="tag-glitch">#9ZFAMILY | PORTAL OFICIAL</div>
                 <h1 className="hero-title">
-                    EL FUTURO ES <br />
-                    <span className="purple-glow-text">AHORA MISM0</span>
+                    TODO VIOLETA. <br />
+                    <span className="purple-glow-text">SIEMPRE 9Z</span>
                 </h1>
                 <p className="hero-subtitle">
-                    Portal gaming interactivo de alto rendimiento para el equipo de esports más grande de Latinoamérica. Explorá fixtures reactivos, rosters holográficos 3D y nuestra tienda de preventa premium.
+                    Mejoramos el portal oficial de 9z Team. Viví la experiencia definitiva de la organización de esports más influyente de la región. Seguí de cerca nuestras escuadras de CS2, Valorant y League of Legends.
                 </p>
                 <div className="hero-cta-group">
                     <a 
-                        href="#partidos" 
+                        href="#roster" 
                         className="btn btn-primary btn-glow"
-                        onClick={(e) => handleAction(e, 'partidos')}
-                        onMouseEnter={playHover}
+                        onClick={(e) => handleAction(e, 'roster')}
                     >
-                        <i className="fa-solid fa-crosshairs"></i>
-                        Ver Fixture
+                        <i className="fa-solid fa-users"></i>
+                        Ver Equipos
                     </a>
                     <a 
                         href="#tienda" 
                         className="btn btn-secondary"
                         onClick={(e) => handleAction(e, 'tienda')}
-                        onMouseEnter={playHover}
                     >
                         <i className="fa-solid fa-shirt"></i>
-                        Conseguir Jersey
+                        Tienda Oficial
                     </a>
                 </div>
             </div>
@@ -89,43 +81,35 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div className="countdown-widget">
                 <div className="widget-header">
                     <span className="header-tag">
-                        <span className="live-dot"></span> PRÓXIMO ENCUENTRO
+                        <span className="live-dot"></span> PRÓXIMO PARTIDO
                     </span>
-                    <span className="widget-game-tag">CS2 - MAJOR</span>
+                    <span className="widget-game-tag">CS2 - SUDAMÉRICA</span>
                 </div>
 
                 <div className="matchup-row">
                     {/* Home Team: 9z */}
-                    <div className="match-team" onMouseEnter={playHover}>
+                    <div className="match-team">
                         <svg className="team-shield" viewBox="0 0 100 100" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" fill="#8b2dfb" stroke="#ffffff" strokeWidth="2.5" />
+                            <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" fill="#1a0933" stroke="#8b2dfb" strokeWidth="2.5" />
                             <polygon points="50,15 82,34 82,66 50,85 18,66 18,34" fill="#090514" stroke="#ff007a" strokeWidth="1.5" />
-                            <path d="M42,35 C42,30, 58,30, 58,38 C58,46, 42,50, 42,62 L58,62 M38,62 L42,62 M40,62 C40,55, 52,50, 52,44 Z" stroke="#00f0ff" strokeWidth="5" strokeLinecap="round" />
-                            <path d="M38,62 L58,62 L42,72 L58,72" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M42,35 C42,30, 58,30, 58,38 C58,46, 42,50, 42,62 L58,62 M38,62 L42,62 M40,62 C40,55, 52,50, 52,44 Z" stroke="#ff007a" strokeWidth="5" strokeLinecap="round" />
+                            <path d="M38,62 L58,62 L42,72 L58,72" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span className="team-name">9z Team</span>
                     </div>
 
                     <div className="match-vs">VS</div>
 
-                    {/* Away Team: FURIA */}
-                    <div className="match-team" onMouseEnter={playHover}>
+                    {/* Away Team: IMPERIAL */}
+                    <div className="match-team">
                         <svg className="team-shield" viewBox="0 0 100 100" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" fill="#1c2b36" stroke="#00f0ff" strokeWidth="2.5" />
-                            {/* Glowing Neon Cyan Panter Head design representation */}
-                            <path 
-                                d="M 30,60 C 25,50 25,35 40,25 C 50,18 65,22 75,30 C 85,38 80,55 70,65 C 60,75 40,75 30,60 Z" 
-                                fill="#090514" 
-                                stroke="#00f0ff" 
-                                strokeWidth="2"
-                            />
-                            {/* Eyes and ears of custom wolf/panther shield */}
-                            <polygon points="35,28 42,34 33,35" fill="#ff007a" />
-                            <polygon points="75,32 68,36 76,40" fill="#ff007a" />
-                            <path d="M42,50 C48,46, 54,46, 60,50 L51,60 Z" fill="#00f0ff" />
-                            <path d="M28,68 L32,60 C38,68, 62,68, 68,60 L72,68" stroke="#ff007a" strokeWidth="2" strokeLinecap="round" />
+                            <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" fill="#112d22" stroke="#00ff88" strokeWidth="2.5" />
+                            {/* Inner Shield details representing Imperial Logo concept */}
+                            <path d="M50,20 L75,35 L75,65 L50,80 L25,65 L25,35 Z" fill="#090514" stroke="#00ff88" strokeWidth="1.5" />
+                            <circle cx="50" cy="50" r="15" fill="none" stroke="#ffffff" strokeWidth="3" />
+                            <path d="M40,50 L60,50" stroke="#00ff88" strokeWidth="4.5" strokeLinecap="round" />
                         </svg>
-                        <span className="team-name">FURIA</span>
+                        <span className="team-name">Imperial</span>
                     </div>
                 </div>
 
@@ -153,14 +137,13 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                 </div>
 
                 <div className="widget-footer">
-                    <span>14:30 hs GMT-3</span>
+                    <span>18:00 hs GMT-3</span>
                     <a 
                         href="#streams" 
                         className="widget-stream-link"
                         onClick={(e) => handleAction(e, 'streams')}
-                        onMouseEnter={playHover}
                     >
-                        <i className="fa-brands fa-twitch"></i> SINTONIZAR EN VIVO
+                        <i className="fa-brands fa-twitch"></i> VER STREAM OFICIAL
                     </a>
                 </div>
             </div>

@@ -77,105 +77,167 @@ const PlayerAvatarSVG: React.FC<{ hairColor: string; visorColor: string }> = ({ 
 };
 
 export const Roster: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'cs2' | 'valorant' | 'creators'>('cs2');
+    const [activeTab, setActiveTab] = useState<'cs2' | 'valorant' | 'lol' | 'creators'>('cs2');
 
     const playHover = () => audioEngine.playHover();
     const playClick = () => audioEngine.playClick();
 
-    // Roster de jugadores con firma y stats gaming
+    // Roster de jugadores reales 2026 de 9z Team
     const playersData: { [key: string]: Player[] } = {
         cs2: [
             {
-                nick: 'dgt',
-                name: 'Franco Garcia',
-                role: 'LURKER / AWP',
-                number: '07',
-                stat1: '1.24', lbl1: 'RATING 2.0',
-                stat2: '84.6', lbl2: 'ADR',
-                stat3: '74.2%', lbl3: 'KAST',
-                signature: 'dgt_#'
-            },
-            {
                 nick: 'max',
-                name: 'Maximiliano Gonzalez',
+                name: 'Maximiliano González',
                 role: 'IGL / IN-GAME LEADER',
                 number: '10',
                 stat1: '1.08', lbl1: 'RATING 2.0',
                 stat2: '76.8', lbl2: 'ADR',
                 stat3: '68.9%', lbl3: 'KAST',
-                signature: 'maxGx'
+                signature: 'maxGx_#'
             },
             {
-                nick: 'buda',
-                name: 'Nicolas Kramer',
-                role: 'ENTRY FRAGGER',
-                number: '09',
-                stat1: '1.16', lbl1: 'RATING 2.0',
-                stat2: '81.2', lbl2: 'ADR',
-                stat3: '71.5%', lbl3: 'KAST',
-                signature: 'buda_K'
-            },
-            {
-                nick: 'MartinezSa',
-                name: 'Antonio Martinez',
-                role: 'AWPER CHIEF',
-                number: '23',
-                stat1: '1.21', lbl1: 'RATING 2.0',
-                stat2: '78.5', lbl2: 'ADR',
-                stat3: '73.8%', lbl3: 'KAST',
-                signature: 'MtzSa'
+                nick: 'dgt',
+                name: 'Franco García',
+                role: 'LURKER / RIFLER',
+                number: '07',
+                stat1: '1.24', lbl1: 'RATING 2.0',
+                stat2: '84.6', lbl2: 'ADR',
+                stat3: '74.2%', lbl3: 'KAST',
+                signature: 'dgt_1'
             },
             {
                 nick: 'HUASOPEEK',
-                name: 'Francisco Muñoz',
+                name: 'Matías Ibáñez',
                 role: 'RIFLER / SUPPORT',
                 number: '88',
                 stat1: '1.12', lbl1: 'RATING 2.0',
                 stat2: '79.2', lbl2: 'ADR',
                 stat3: '70.4%', lbl3: 'KAST',
-                signature: 'hpeek'
+                signature: 'hpeek_#'
+            },
+            {
+                nick: 'luchov',
+                name: 'Luciano Herrera',
+                role: 'ENTRY FRAGGER',
+                number: '19',
+                stat1: '1.10', lbl1: 'RATING 2.0',
+                stat2: '78.1', lbl2: 'ADR',
+                stat3: '71.0%', lbl3: 'KAST',
+                signature: 'luchov_V'
+            },
+            {
+                nick: 'meyern',
+                name: 'Ignacio Meyer',
+                role: 'RIFLER / ENTRY',
+                number: '09',
+                stat1: '1.15', lbl1: 'RATING 2.0',
+                stat2: '81.5', lbl2: 'ADR',
+                stat3: '72.3%', lbl3: 'KAST',
+                signature: 'meyern_#'
             }
         ],
         valorant: [
             {
-                nick: 'mizu',
-                name: 'Facundo Ramirez',
+                nick: 'MiradaNinja',
+                name: 'Waldo Barahona',
                 role: 'DUELISTA PRINCIPAL',
-                number: '11',
-                stat1: '254', lbl1: 'ACS',
-                stat2: '1.34', lbl2: 'K/D RATIO',
-                stat3: '38.2%', lbl3: 'HEADSHOT',
-                signature: 'MizuV'
+                number: '01',
+                stat1: '256', lbl1: 'ACS',
+                stat2: '1.28', lbl2: 'K/D RATIO',
+                stat3: '36.4%', lbl3: 'HEADSHOT',
+                signature: 'MiradaNinja_#'
             },
             {
-                nick: 'deivid',
-                name: 'David Sanchez',
-                role: 'INICIADOR / FLEX',
+                nick: 'KIMB0',
+                name: 'Dylan Pintos',
+                role: 'INICIADOR / ASSIST',
+                number: '03',
+                stat1: '210', lbl1: 'ACS',
+                stat2: '1.15', lbl2: 'K/D RATIO',
+                stat3: '28.2%', lbl3: 'HEADSHOT',
+                signature: 'KIMB0_V'
+            },
+            {
+                nick: 'skyppervz',
+                name: 'Lucas Pizarro',
+                role: 'CENTINELA / ANCHOR',
                 number: '05',
+                stat1: '204', lbl1: 'ACS',
+                stat2: '1.18', lbl2: 'K/D RATIO',
+                stat3: '32.1%', lbl3: 'HEADSHOT',
+                signature: 'skypp_#'
+            },
+            {
+                nick: 'Tuli',
+                name: 'Giulliano Pozo',
+                role: 'CONTROLADOR / IGL',
+                number: '08',
+                stat1: '201', lbl1: 'ACS',
+                stat2: '1.09', lbl2: 'K/D RATIO',
+                stat3: '25.4%', lbl3: 'HEADSHOT',
+                signature: 'Tuli_V'
+            },
+            {
+                nick: 'M1key',
+                name: 'Luciano Pensa',
+                role: 'INICIADOR / FLEX',
+                number: '02',
                 stat1: '215', lbl1: 'ACS',
                 stat2: '1.12', lbl2: 'K/D RATIO',
-                stat3: '26.8%', lbl3: 'HEADSHOT',
-                signature: 'deivd'
+                stat3: '29.8%', lbl3: 'HEADSHOT',
+                signature: 'M1key_#'
+            }
+        ],
+        lol: [
+            {
+                nick: 'Nate',
+                name: 'Damián Rea',
+                role: 'TOP LANER',
+                number: '04',
+                stat1: '3.82', lbl1: 'KDA',
+                stat2: '62.4%', lbl2: 'PART. KILLS',
+                stat3: '8.5', lbl3: 'CS / MINUTO',
+                signature: 'Nate_#'
             },
             {
-                nick: 'frz',
-                name: 'Leandro Gomez',
-                role: 'CENTINELA / ANCHOR',
-                number: '17',
-                stat1: '202', lbl1: 'ACS',
-                stat2: '1.18', lbl2: 'K/D RATIO',
-                stat3: '31.5%', lbl3: 'HEADSHOT',
-                signature: 'frzL'
+                nick: 'Apoka',
+                name: 'Mario Pessoa',
+                role: 'JUNGLE',
+                number: '05',
+                stat1: '4.12', lbl1: 'KDA',
+                stat2: '71.5%', lbl2: 'PART. KILLS',
+                stat3: '6.2', lbl3: 'CS / MINUTO',
+                signature: 'Apoka_V'
             },
             {
-                nick: 'bary',
-                name: 'Barzo Martinez',
-                role: 'CONTROLADOR / IGL',
-                number: '02',
-                stat1: '198', lbl1: 'ACS',
-                stat2: '1.05', lbl2: 'K/D RATIO',
-                stat3: '24.2%', lbl3: 'HEADSHOT',
-                signature: 'bary9'
+                nick: 'Aloned',
+                name: 'Tomás Díaz',
+                role: 'MID LANER',
+                number: '09',
+                stat1: '4.54', lbl1: 'KDA',
+                stat2: '68.9%', lbl2: 'PART. KILLS',
+                stat3: '9.1', lbl3: 'CS / MINUTO',
+                signature: 'Aloned_#'
+            },
+            {
+                nick: 'Fix',
+                name: 'Nicolás Sayago',
+                role: 'BOT LANER (ADC)',
+                number: '10',
+                stat1: '4.88', lbl1: 'KDA',
+                stat2: '74.2%', lbl2: 'PART. KILLS',
+                stat3: '9.5', lbl3: 'CS / MINUTO',
+                signature: 'Fix_#'
+            },
+            {
+                nick: 'Coscu',
+                name: 'Martín Pérez Disalvo',
+                role: 'SUPPORT / CREATOR',
+                number: '99',
+                stat1: '3.20', lbl1: 'KDA',
+                stat2: '58.1%', lbl2: 'PART. KILLS',
+                stat3: '1.2', lbl3: 'CS / MINUTO',
+                signature: 'Coscu_#'
             }
         ],
         creators: [
@@ -185,29 +247,39 @@ export const Roster: React.FC = () => {
                 role: 'FUNDADOR & CREADOR',
                 number: '99',
                 stat1: '1.2M', lbl1: 'SEGUIDORES',
-                stat2: 'IRL', lbl2: 'CATEGORÍA',
+                stat2: 'IRL / CHAT', lbl2: 'CATEGORÍA',
                 stat3: '10K+', lbl3: 'PROMEDIO',
-                signature: 'Frankk'
+                signature: 'Frankk_#'
             },
             {
-                nick: 'Luchov',
-                name: 'Luciano Vitale',
-                role: 'CASTER & STREAMER',
-                number: '77',
-                stat1: '320K', lbl1: 'SEGUIDORES',
-                stat2: 'CS2', lbl2: 'CATEGORÍA',
-                stat3: '2.5K', lbl3: 'PROMEDIO',
-                signature: 'Luchov'
+                nick: 'Momo',
+                name: 'Gerónimo Benavides',
+                role: 'EMBAJADOR / IRL',
+                number: '11',
+                stat1: '1.1M', lbl1: 'SEGUIDORES',
+                stat2: 'IRL / HISTORIA', lbl2: 'CATEGORÍA',
+                stat3: '8K+', lbl3: 'PROMEDIO',
+                signature: 'Momo_V'
             },
             {
-                nick: 'Goncho',
-                name: 'Gonzalo Banzas',
-                role: 'STREAMER / VARIETY',
+                nick: 'Joaco',
+                name: 'Joaco López',
+                role: 'CREADOR / FPS',
+                number: '12',
+                stat1: '450K', lbl1: 'SEGUIDORES',
+                stat2: 'FPS & IRL', lbl2: 'CATEGORÍA',
+                stat3: '3K+', lbl3: 'PROMEDIO',
+                signature: 'Joaco_#'
+            },
+            {
+                nick: 'Pimpeano',
+                name: 'Galíndez',
+                role: 'CREADOR / COMEDIA',
                 number: '14',
-                stat1: '850K', lbl1: 'SEGUIDORES',
-                stat2: 'FPS', lbl2: 'CATEGORÍA',
-                stat3: '6.2K', lbl3: 'PROMEDIO',
-                signature: 'GonchoB'
+                stat1: '700K', lbl1: 'SEGUIDORES',
+                stat2: 'HUMOR / FPS', lbl2: 'CATEGORÍA',
+                stat3: '4K+', lbl3: 'PROMEDIO',
+                signature: 'Pimpe_#'
             }
         ]
     };
@@ -245,7 +317,7 @@ export const Roster: React.FC = () => {
         }
     };
 
-    const handleTabClick = (tab: 'cs2' | 'valorant' | 'creators') => {
+    const handleTabClick = (tab: 'cs2' | 'valorant' | 'lol' | 'creators') => {
         playClick();
         setActiveTab(tab);
     };
@@ -253,9 +325,11 @@ export const Roster: React.FC = () => {
     // Parámetros estéticos para los avatares según división
     const getAvatarConfig = (nick: string) => {
         if (activeTab === 'cs2') {
-            return { hairColor: '#ff007a', visorColor: '#00f0ff' };
+            return { hairColor: '#8b2dfb', visorColor: '#ff007a' };
         } else if (activeTab === 'valorant') {
-            return { hairColor: '#00f0ff', visorColor: '#ffb800' };
+            return { hairColor: '#ff0055', visorColor: '#00f0ff' };
+        } else if (activeTab === 'lol') {
+            return { hairColor: '#ffb800', visorColor: '#00f0ff' };
         } else {
             // Creators
             if (nick === 'Frankkaster') {
@@ -275,7 +349,7 @@ export const Roster: React.FC = () => {
                     ROSTER <span className="gradient-text">OFICIAL</span>
                 </h2>
                 <p className="section-subtitle">
-                    Cartas holográficas interactivas con tecnología 3D. Desplazá el mouse sobre cada jugador para verificar sus estadísticas tácticas y calibraciones.
+                    Miembros activos de la escuadra violeta en sus respectivas disciplinas competitivas y canales oficiales.
                 </p>
 
                 {/* Tabs for Division selection */}
@@ -291,6 +365,12 @@ export const Roster: React.FC = () => {
                         onClick={() => handleTabClick('valorant')}
                     >
                         Valorant
+                    </button>
+                    <button 
+                        className={`roster-tab-btn ${activeTab === 'lol' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('lol')}
+                    >
+                        League of Legends
                     </button>
                     <button 
                         className={`roster-tab-btn ${activeTab === 'creators' ? 'active' : ''}`}
@@ -321,6 +401,7 @@ export const Roster: React.FC = () => {
                                 <PlayerAvatarSVG 
                                     hairColor={avatarConfig.hairColor} 
                                     visorColor={avatarConfig.visorColor} 
+                                
                                 />
                             </div>
 

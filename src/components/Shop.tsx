@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import type { JerseyEdition } from '../types';
-import { audioEngine } from '../utils/audioEngine';
 
 // Renderizador vectorial reactivo de la camiseta oficial de 9z Team
 export const InteractiveJerseySVG: React.FC<{ edition: string; sizeClass?: string }> = ({ edition, sizeClass = '' }) => {
@@ -79,7 +78,7 @@ export const InteractiveJerseySVG: React.FC<{ edition: string; sizeClass?: strin
                 strokeWidth="2" 
             />
 
-            {/* Dynamic visual stripes (Gaming Aesthetics) */}
+            {/* Dynamic visual stripes */}
             <path 
                 d="M 72,110 L 88,175 M 128,110 L 112,175" 
                 stroke={stripeColor} 
@@ -101,14 +100,14 @@ export const InteractiveJerseySVG: React.FC<{ edition: string; sizeClass?: strin
                 strokeWidth="3" 
             />
 
-            {/* 9z Crest on the Chest (Programmatic Logo) */}
+            {/* 9z Crest on the Chest */}
             <g transform="translate(82, 85) scale(0.36)" style={{ filter: `drop-shadow(0 0 5px ${logoColor})` }}>
                 <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" fill="#090514" stroke={logoColor} strokeWidth="4.5" />
                 <path d="M42,32 C42,26, 58,26, 58,36 C58,45, 42,48, 42,62 L58,62 M35,62 L58,62 M40,62 C40,55, 52,50, 52,44 Z" stroke="#ffffff" strokeWidth="6" strokeLinecap="round" />
                 <path d="M35,62 L58,62 L42,72 L58,72" stroke={collarColor} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </g>
 
-            {/* Sponsor Prints (Globant / Globant Logo mockup representation) */}
+            {/* Sponsor Prints */}
             <text 
                 x="100" 
                 y="145" 
@@ -136,15 +135,6 @@ export const InteractiveJerseySVG: React.FC<{ edition: string; sizeClass?: strin
             >
                 #9ZFAMILY
             </text>
-
-            {/* Holographic light shimmer */}
-            <path 
-                d="M 58,80 L 142,100" 
-                stroke="#ffffff" 
-                strokeWidth="1.5" 
-                opacity="0.15" 
-                strokeLinecap="round" 
-            />
         </svg>
     );
 };
@@ -156,9 +146,6 @@ interface ShopProps {
 export const Shop: React.FC<ShopProps> = ({ onBuyClick }) => {
     const [selectedEdition, setSelectedEdition] = useState<'violet' | 'black' | 'white'>('violet');
     const [selectedSize, setSelectedSize] = useState<string>('M');
-
-    const playHover = () => audioEngine.playHover();
-    const playClick = () => audioEngine.playClick();
 
     // Modelado de ediciones y detalles
     const editions: { [key: string]: JerseyEdition } = {
@@ -191,18 +178,6 @@ export const Shop: React.FC<ShopProps> = ({ onBuyClick }) => {
         } as any
     };
 
-    const handleEditionChange = (ed: 'violet' | 'black' | 'white') => {
-        playClick();
-        setSelectedEdition(ed);
-        // Efecto sonoro chiptune de cambio de color
-        audioEngine.playHover();
-    };
-
-    const handleSizeSelect = (sz: string) => {
-        playClick();
-        setSelectedSize(sz);
-    };
-
     const activeInfo = editions[selectedEdition];
 
     return (
@@ -213,10 +188,10 @@ export const Shop: React.FC<ShopProps> = ({ onBuyClick }) => {
                         <i className="fa-solid fa-shirt"></i> INDUMENTARIA OFICIAL
                     </div>
                     <h2 className="section-title">
-                        MERCH <span className="gradient-text">SHOWCASE</span>
+                        9Z TEAM <span className="gradient-text">MERCH</span>
                     </h2>
                     <p className="section-subtitle">
-                        Conseguí la armadura oficial de 9z Team con materiales importados de alto rendimiento técnico y tecnología reflex reactiva.
+                        Conseguí la armadura oficial de 9z Team diseñada con materiales elásticos de alta respirabilidad y tecnología reflex reactiva.
                     </p>
                 </div>
             </div>
@@ -224,12 +199,15 @@ export const Shop: React.FC<ShopProps> = ({ onBuyClick }) => {
             {/* Showcase Grid */}
             <div className="merch-showcase">
                 {/* Left side: Interactive Jersey Card */}
-                <div className="merch-gallery" onMouseEnter={playHover}>
-                    <div className="product-card">
-                        <span className="product-badge">NUEVA Colección</span>
-                        <div className="prenda-container">
+                <div className="merch-gallery">
+                    <div className="product-card" style={{ background: 'rgba(9,5,20,0.5)', border: '1px solid rgba(139,45,251,0.15)', borderRadius: '8px', padding: '30px' }}>
+                        <span className="product-badge" style={{ background: '#ff007a' }}>PREVENTA 2026</span>
+                        <div className="prenda-container" style={{ position: 'relative', height: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <div className="prenda-glow" style={{
-                                background: `radial-gradient(circle, ${activeInfo.gradient}66 0%, transparent 60%)`
+                                position: 'absolute',
+                                width: '200px',
+                                height: '200px',
+                                background: `radial-gradient(circle, ${activeInfo.gradient}33 0%, transparent 70%)`
                             }}></div>
                             <InteractiveJerseySVG edition={selectedEdition} />
                         </div>
@@ -238,53 +216,67 @@ export const Shop: React.FC<ShopProps> = ({ onBuyClick }) => {
 
                 {/* Right side: Product Configurator */}
                 <div className="merch-info">
-                    <h3 className="merch-product-title">{activeInfo.title}</h3>
+                    <h3 className="merch-product-title" style={{ fontFamily: 'Orbitron', color: '#ffffff', fontSize: '22px' }}>{activeInfo.title}</h3>
                     
-                    <div className="product-price-row">
-                        <span className="current-price">{activeInfo.price} ARS</span>
-                        <span className="old-price">$58.000 ARS</span>
-                        <span className="discount-badge">PREVENTA ACTIVA</span>
+                    <div className="product-price-row" style={{ display: 'flex', alignItems: 'center', gap: '15px', margin: '15px 0' }}>
+                        <span className="current-price" style={{ color: '#00f0ff', fontSize: '20px', fontWeight: 900 }}>{activeInfo.price} ARS</span>
+                        <span className="old-price" style={{ textDecoration: 'line-through', color: 'var(--color-text-muted)', fontSize: '14px' }}>$58.000 ARS</span>
                     </div>
 
-                    <p className="merch-description">
-                        La nueva camiseta deportiva de 9z Team rediseñada para brindar máxima respirabilidad en competencias de alta intensidad. Tejido premium microperforado 100% poliéster ecológico con sublimado digital HD que nunca pierde intensidad.
+                    <p className="merch-description" style={{ color: 'var(--color-text-muted)', lineHeight: '1.6', fontSize: '13px' }}>
+                        La nueva camiseta deportiva oficial de 9z Team. Tejido premium microperforado de alta tecnología sublimado en alta definición. Ideal para competiciones de alta intensidad.
                     </p>
 
                     {/* Selector de Color */}
-                    <div className="option-group">
-                        <span className="option-label">
-                            SELECCIONAR EDICIÓN: <span className="value-highlight">{activeInfo.name}</span>
+                    <div className="option-group" style={{ margin: '20px 0' }}>
+                        <span className="option-label" style={{ display: 'block', fontSize: '11px', fontWeight: 700, letterSpacing: '1px', color: '#ffffff', marginBottom: '8px' }}>
+                            SELECCIONAR EDICIÓN: <span className="value-highlight" style={{ color: '#8b2dfb' }}>{activeInfo.name}</span>
                         </span>
-                        <div className="color-selectors" onMouseEnter={playHover}>
+                        <div className="color-selectors" style={{ display: 'flex', gap: '12px' }}>
                             <button 
                                 className={`color-dot violet ${selectedEdition === 'violet' ? 'active' : ''}`}
-                                onClick={() => handleEditionChange('violet')}
+                                onClick={() => setSelectedEdition('violet')}
+                                style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#8b2dfb', border: selectedEdition === 'violet' ? '2px solid #ffffff' : 'none', cursor: 'pointer' }}
                                 title="Edición Tradicional Violeta"
                             ></button>
                             <button 
                                 className={`color-dot black ${selectedEdition === 'black' ? 'active' : ''}`}
-                                onClick={() => handleEditionChange('black')}
+                                onClick={() => setSelectedEdition('black')}
+                                style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#202023', border: selectedEdition === 'black' ? '2px solid #ffffff' : 'none', cursor: 'pointer' }}
                                 title="Edición Dark Void"
                             ></button>
                             <button 
                                 className={`color-dot white ${selectedEdition === 'white' ? 'active' : ''}`}
-                                onClick={() => handleEditionChange('white')}
+                                onClick={() => setSelectedEdition('white')}
+                                style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#ffffff', border: selectedEdition === 'white' ? '2px solid #8b2dfb' : 'none', cursor: 'pointer' }}
                                 title="Edición White Gold"
                             ></button>
                         </div>
                     </div>
 
                     {/* Selector de Talle */}
-                    <div className="option-group">
-                        <span className="option-label">
-                            SELECCIONAR TALLE: <span className="value-highlight">TALLE {selectedSize}</span>
+                    <div className="option-group" style={{ margin: '20px 0' }}>
+                        <span className="option-label" style={{ display: 'block', fontSize: '11px', fontWeight: 700, letterSpacing: '1px', color: '#ffffff', marginBottom: '8px' }}>
+                            SELECCIONAR TALLE: <span className="value-highlight" style={{ color: '#00f0ff' }}>TALLE {selectedSize}</span>
                         </span>
-                        <div className="size-selectors" onMouseEnter={playHover}>
+                        <div className="size-selectors" style={{ display: 'flex', gap: '8px' }}>
                             {['S', 'M', 'L', 'XL', 'XXL'].map((sz) => (
                                 <button 
                                     key={sz}
                                     className={`size-btn ${selectedSize === sz ? 'active' : ''}`}
-                                    onClick={() => handleSizeSelect(sz)}
+                                    onClick={() => setSelectedSize(sz)}
+                                    style={{
+                                        width: '40px',
+                                        height: '40px',
+                                        background: selectedSize === sz ? '#ff007a' : 'rgba(255,255,255,0.05)',
+                                        border: '1px solid rgba(255,255,255,0.1)',
+                                        borderRadius: '4px',
+                                        color: '#ffffff',
+                                        fontWeight: 700,
+                                        fontSize: '12px',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease'
+                                    }}
                                 >
                                     {sz}
                                 </button>
@@ -293,7 +285,7 @@ export const Shop: React.FC<ShopProps> = ({ onBuyClick }) => {
                     </div>
 
                     {/* Botón de Compra */}
-                    <div className="shop-action-box">
+                    <div className="shop-action-box" style={{ marginTop: '25px' }}>
                         <button 
                             className="btn btn-primary btn-glow full-width"
                             onClick={() => onBuyClick({
@@ -302,12 +294,12 @@ export const Shop: React.FC<ShopProps> = ({ onBuyClick }) => {
                                 size: selectedSize,
                                 price: activeInfo.price
                             })}
-                            onMouseEnter={playHover}
+                            style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px', fontSize: '14px' }}
                         >
-                            <i className="fa-solid fa-cart-shopping"></i> Iniciar Compra Preventa
+                            <i className="fa-solid fa-cart-shopping"></i> Comprar Armadura Oficial
                         </button>
-                        <span className="shop-shipping-info">
-                            <i className="fa-solid fa-truck-fast"></i> Envíos internacionales y nacionales despachados en 48 hs hábiles.
+                        <span className="shop-shipping-info" style={{ display: 'block', marginTop: '10px', fontSize: '11px', color: 'var(--color-text-muted)', textAlign: 'center' }}>
+                            <i className="fa-solid fa-truck-fast"></i> Despachos y envíos nacionales e internacionales.
                         </span>
                     </div>
                 </div>
