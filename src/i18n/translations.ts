@@ -12,8 +12,8 @@ export const translations = {
         },
         hero: {
             badge: '9Z GLOBANT PORTAL OFICIAL',
-            title: 'TODO VIOLETA.',
-            titleAccent: 'SIEMPRE 9Z',
+            title: '#TodoVioleta',
+            titleAccent: '',
             subtitle: 'Te damos la bienvenida al portal oficial de 9z Globant. Viví la experiencia de la organización de esports más influyente y apasionada de la región. Seguí de cerca a nuestras escuadras competitivas.',
             ctaEquipos: 'Explorar Escuadras',
             ctaTienda: 'Tienda Oficial',
@@ -134,8 +134,8 @@ export const translations = {
         },
         hero: {
             badge: '9Z GLOBANT OFFICIAL PORTAL',
-            title: 'ALL PURPLE.',
-            titleAccent: 'ALWAYS 9Z',
+            title: '#TodoVioleta',
+            titleAccent: '',
             subtitle: 'Welcome to the official portal of 9z Globant. Live the experience of the most influential and passionate esports organization in the region. Follow our competitive squads in CS2, Valorant, Simracing, PUBG Mobile and more.',
             ctaEquipos: 'Explore Squads',
             ctaTienda: 'Official Store',
@@ -256,8 +256,8 @@ export const translations = {
         },
         hero: {
             badge: '9Z GLOBANT PORTAL OFICIAL',
-            title: 'TUDO VIOLETA.',
-            titleAccent: 'SEMPRE 9Z',
+            title: '#TodoVioleta',
+            titleAccent: '',
             subtitle: 'Bem-vindo ao portal oficial da 9z Globant. Viva a experiência da organização de esports mais influente e apaixonada da região. Acompanhe nossas equipes competitivas de CS2, Valorant, Simracing, PUBG Mobile e mais.',
             ctaEquipos: 'Explorar Equipes',
             ctaTienda: 'Loja Oficial',
