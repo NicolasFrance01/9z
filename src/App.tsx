@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { PageTransition } from './components/PageTransition';
 import { HomePage } from './pages/HomePage';
 import { RosterPage } from './pages/RosterPage';
 import { NoticiasPage } from './pages/NoticiasPage';
@@ -62,13 +63,15 @@ function AppShell() {
 
             <Navbar />
 
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/equipos" element={<RosterPage />} />
-                <Route path="/sobre" element={<SobreNosotrosPage />} />
-                <Route path="/noticias" element={<NoticiasPage />} />
-                <Route path="/contacto" element={<ContactoPage />} />
-            </Routes>
+            <PageTransition>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/equipos" element={<RosterPage />} />
+                    <Route path="/sobre" element={<SobreNosotrosPage />} />
+                    <Route path="/noticias" element={<NoticiasPage />} />
+                    <Route path="/contacto" element={<ContactoPage />} />
+                </Routes>
+            </PageTransition>
 
             <Footer />
         </>
