@@ -407,18 +407,17 @@ body.btn-hover .custom-cursor-glow {
     overflow: hidden;
 }
 
-.hero-bg-overlay {
+.global-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* imagen de fondo difuminada — guardar en public/hero_bg.png */
     background-image: url('/hero_bg.jpeg');
     background-size: cover;
     background-position: center;
     filter: blur(3px) brightness(0.35) saturate(1.2);
-    transform: scale(1.04); /* evita bordes blancos del blur */
+    transform: scale(1.04);
     pointer-events: none;
     z-index: -2;
 }

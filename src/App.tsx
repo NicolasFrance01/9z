@@ -48,6 +48,9 @@ function AppShell() {
             <div className="custom-cursor" id="customCursor"></div>
             <div className="custom-cursor-glow" id="customCursorGlow"></div>
 
+            {/* Fondo global difuminado — presente en todas las páginas */}
+            <div className="global-bg"></div>
+
             <div className="cyber-grid-container">
                 <div className="cyber-grid"></div>
             </div>

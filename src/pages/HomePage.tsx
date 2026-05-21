@@ -11,8 +11,6 @@ export const HomePage: React.FC = () => {
     return (
         <>
             <section id="inicio" className="hero-section centered">
-                <div className="hero-bg-overlay"></div>
-
                 <div className="hero-content-centered">
                     <h1 className="hero-title centered" style={{ color: '#beb3cf' }}>
                         {h.title}
