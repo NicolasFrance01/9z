@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
                 {/* Brand Logo */}
                 <Link to="/" className="logo-link">
                     <img
-                        src="/src/assets/9z_logo.png"
+                        src="/9z_logo.png"
                         alt="9Z Team Logo"
                         className="team-logo"
                         style={{ width: '70px', height: 'auto', filter: 'drop-shadow(0px 0px 5px rgba(255,255,255,0.3))' }}

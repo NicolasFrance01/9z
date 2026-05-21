@@ -52,7 +52,7 @@ export const SobreNosotrosPage: React.FC = () => {
                     <div className="sobre-story-visual">
                         <div className="sobre-logo-display">
                             <img
-                                src="/src/assets/9z_logo.png"
+                                src="/9z_logo.png"
                                 alt="9Z Team"
                                 style={{ width: '180px', height: 'auto', filter: 'drop-shadow(0 0 30px rgba(139,45,251,0.6))' }}
                             />

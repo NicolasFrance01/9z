@@ -36,7 +36,7 @@ export const PageTransition: React.FC<{ children: React.ReactNode }> = ({ childr
 
                     {/* Center logo mark */}
                     <div className="pt-center">
-                        <img src="/src/assets/9z.png" alt="" className="pt-logo" />
+                        <img src="/9z.png" alt="" className="pt-logo" />
                         <div className="pt-scanline-h" />
                     </div>
                 </div>
