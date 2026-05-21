@@ -14,12 +14,13 @@ function AppShell() {
     useEffect(() => {
         const cursor = document.getElementById('customCursor');
         const glow = document.getElementById('customCursorGlow');
-        const ambient = document.getElementById('ambientGlow');
 
         const handleMouseMove = (e: MouseEvent) => {
-            if (cursor) { cursor.style.left = `${e.clientX}px`; cursor.style.top = `${e.clientY}px`; }
-            if (glow) { glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; }
-            if (ambient) { ambient.style.left = `${e.clientX}px`; ambient.style.top = `${e.clientY}px`; }
+            // transform: translate() is GPU-composited — no layout reflow
+            const x = e.clientX;
+            const y = e.clientY;
+            if (cursor) cursor.style.transform = `translate(${x - 4}px, ${y - 4}px)`;
+            if (glow)   glow.style.transform   = `translate(${x - 18}px, ${y - 18}px)`;
         };
 
         const handleMouseOver = (e: MouseEvent) => {
@@ -29,10 +30,6 @@ function AppShell() {
                 document.body.classList.add('link-hover');
             } else if (
                 target.closest('button') ||
-                target.closest('.color-dot') ||
-                target.closest('.filter-chip') ||
-                target.closest('.tab-btn') ||
-                target.closest('.roster-tab-btn') ||
                 target.closest('.lang-btn') ||
                 target.closest('.lang-option')
             ) {
@@ -42,8 +39,8 @@ function AppShell() {
             }
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseover', handleMouseOver);
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        window.addEventListener('mouseover', handleMouseOver, { passive: true });
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseover', handleMouseOver);
@@ -52,13 +49,13 @@ function AppShell() {
 
     return (
         <>
+            {/* Cursor — solo dos elementos, posicionados con transform (GPU) */}
             <div className="custom-cursor" id="customCursor"></div>
             <div className="custom-cursor-glow" id="customCursorGlow"></div>
-            <div className="ambient-glow" id="ambientGlow"></div>
 
+            {/* Fondo estático — sin animación continua */}
             <div className="cyber-grid-container">
                 <div className="cyber-grid"></div>
-                <div className="scanline"></div>
             </div>
 
             <Navbar />

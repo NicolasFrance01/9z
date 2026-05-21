@@ -55,12 +55,8 @@ export const Navbar: React.FC = () => {
                         src="/9z_logo.png"
                         alt="9Z Team Logo"
                         className="team-logo"
-                        style={{ width: '70px', height: 'auto', filter: 'drop-shadow(0px 0px 5px rgba(255,255,255,0.3))' }}
+                        style={{ width: '70px', height: 'auto', filter: 'drop-shadow(0px 0px 8px rgba(139,45,251,0.5))' }}
                     />
-                    <div className="brand-text">
-                        <span className="brand-name" style={{ color: '#ffffff' }}>9Z Team</span>
-                        <span className="brand-sub" style={{ color: '#8b2dfb' }}>#TODOVILETA</span>
-                    </div>
                 </Link>
 
                 {/* Navigation Menu */}

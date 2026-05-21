@@ -77,17 +77,19 @@ button, input, select, textarea {
     cursor: none;
 }
 
-/* CURSOR PERSONALIZADO (SOLO ESCRITORIO) */
+/* CURSOR PERSONALIZADO — posición via transform (GPU, sin layout reflow) */
 .custom-cursor {
     width: 8px;
     height: 8px;
     background-color: var(--color-secondary);
     border-radius: 50%;
     position: fixed;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    will-change: transform;
     pointer-events: none;
     z-index: 9999;
-    transition: width 0.1s, height 0.1s, background-color 0.1s;
+    transition: width 0.1s, height 0.1s, background-color 0.15s;
 }
 
 .custom-cursor-glow {
@@ -96,10 +98,12 @@ button, input, select, textarea {
     border: 1px solid var(--color-primary);
     border-radius: 50%;
     position: fixed;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    will-change: transform;
     pointer-events: none;
     z-index: 9998;
-    transition: transform 0.15s ease-out, border-color 0.2s, background-color 0.2s;
+    transition: width 0.15s, height 0.15s, border-color 0.2s, background-color 0.2s;
 }
 
 /* Estados del Cursor */
@@ -113,8 +117,8 @@ body.link-hover .custom-cursor-glow {
     width: 50px;
     height: 50px;
     border-color: var(--color-cyan);
-    background-color: rgba(0, 240, 255, 0.05);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    background-color: rgba(0, 240, 255, 0.04);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
 }
 
 body.btn-hover .custom-cursor {
@@ -125,8 +129,8 @@ body.btn-hover .custom-cursor-glow {
     width: 44px;
     height: 44px;
     border-color: var(--color-accent);
-    background-color: rgba(255, 184, 0, 0.1);
-    box-shadow: 0 0 20px rgba(255, 184, 0, 0.4);
+    background-color: rgba(255, 184, 0, 0.06);
+    box-shadow: 0 0 14px rgba(255, 184, 0, 0.3);
 }
 
 /* SCROLLBAR FUTURISTA */
@@ -149,7 +153,7 @@ body.btn-hover .custom-cursor-glow {
     background: var(--color-secondary);
 }
 
-/* FONDO DE CUADRÍCULA ANIMADO */
+/* FONDO — grilla estática (sin animación continua) */
 .cyber-grid-container {
     position: fixed;
     top: 0;
@@ -162,48 +166,12 @@ body.btn-hover .custom-cursor-glow {
 }
 
 .cyber-grid {
-    width: 200%;
-    height: 200%;
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    background-image: 
-        linear-gradient(rgba(139, 45, 251, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 45, 251, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    transform: perspective(500px) rotateX(60deg);
-    animation: gridScroll 20s linear infinite;
-}
-
-.scanline {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        rgba(18, 10, 36, 0) 0%,
-        rgba(18, 10, 36, 0.1) 10%,
-        rgba(139, 45, 251, 0.03) 50%,
-        rgba(18, 10, 36, 0.1) 90%,
-        rgba(18, 10, 36, 0) 100%
-    );
-    pointer-events: none;
-}
-
-/* EFECTO FOCO DE LUZ DE RATÓN */
-.ambient-glow {
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(139, 45, 251, 0.15) 0%, rgba(255, 0, 122, 0.02) 50%, transparent 70%);
-    border-radius: 50%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: -5;
-    transition: width 0.3s, height 0.3s;
+    background-image:
+        linear-gradient(rgba(139, 45, 251, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 45, 251, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
 }
 
 /* ==========================================================================
@@ -440,14 +408,19 @@ body.btn-hover .custom-cursor-glow {
 }
 
 .hero-bg-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 80% 50%, rgba(139, 45, 251, 0.08) 0%, transparent 50%);
+    width: 100vw;
+    height: 100vh;
+    /* imagen de fondo difuminada — guardar en public/hero_bg.png */
+    background-image: url('/hero_bg.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px) brightness(0.35) saturate(1.2);
+    transform: scale(1.04); /* evita bordes blancos del blur */
     pointer-events: none;
-    z-index: -1;
+    z-index: -2;
 }
 
 .hero-content {
