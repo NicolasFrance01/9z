@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
+import { usePageTransition } from '../context/TransitionContext';
 import type { Lang } from '../i18n/translations';
 
 const LANGS: { code: Lang; flag: string; label: string }[] = [
@@ -15,6 +16,7 @@ export const Navbar: React.FC = () => {
     const [langOpen, setLangOpen] = useState(false);
     const location = useLocation();
     const { lang, setLang, t } = useLang();
+    const { navigateTo } = usePageTransition();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -22,19 +24,26 @@ export const Navbar: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Cerrar menús cuando la ruta cambia (después de la transición)
     useEffect(() => {
         setMobileMenuOpen(false);
         setLangOpen(false);
-        window.scrollTo(0, 0);
     }, [location.pathname]);
 
-    // Close lang dropdown on outside click
     useEffect(() => {
         if (!langOpen) return;
         const close = () => setLangOpen(false);
         window.addEventListener('click', close);
         return () => window.removeEventListener('click', close);
     }, [langOpen]);
+
+    const handleNavClick = (e: React.MouseEvent, path: string) => {
+        e.preventDefault();
+        setMobileMenuOpen(false);
+        if (location.pathname !== path) {
+            navigateTo(path);
+        }
+    };
 
     const navItems = [
         { path: '/', label: t.nav.inicio, icon: 'fa-house' },
@@ -49,28 +58,29 @@ export const Navbar: React.FC = () => {
     return (
         <header className={`command-center ${scrolled ? 'scrolled' : ''}`}>
             <div className="cc-container">
-                {/* Brand Logo */}
-                <Link to="/" className="logo-link">
+                {/* Logo */}
+                <a href="/" className="logo-link" onClick={(e) => handleNavClick(e, '/')}>
                     <img
                         src="/9z_logo.png"
                         alt="9Z Team Logo"
                         className="team-logo"
                         style={{ width: '70px', height: 'auto', filter: 'drop-shadow(0px 0px 8px rgba(139,45,251,0.5))' }}
                     />
-                </Link>
+                </a>
 
                 {/* Navigation Menu */}
                 <nav className={`nav-menu ${mobileMenuOpen ? 'show' : ''}`}>
                     <ul>
                         {navItems.map((item) => (
                             <li key={item.path}>
-                                <Link
-                                    to={item.path}
+                                <a
+                                    href={item.path}
                                     className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+                                    onClick={(e) => handleNavClick(e, item.path)}
                                 >
                                     <i className={`fa-solid ${item.icon}`}></i>
                                     {item.label}
-                                </Link>
+                                </a>
                             </li>
                         ))}
                         <li>
@@ -87,9 +97,8 @@ export const Navbar: React.FC = () => {
                     </ul>
                 </nav>
 
-                {/* Right side: Lang switcher + Hamburger */}
+                {/* Language switcher + Hamburger */}
                 <div className="system-controls">
-                    {/* Language Switcher */}
                     <div
                         className="lang-switcher"
                         onClick={(e) => { e.stopPropagation(); setLangOpen(!langOpen); }}
@@ -117,7 +126,6 @@ export const Navbar: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Mobile Hamburger */}
                     <button
                         className={`mobile-menu-btn ${mobileMenuOpen ? 'active' : ''}`}
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
