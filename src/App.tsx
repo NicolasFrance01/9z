@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Roster } from './components/Roster';
-import { Stream } from './components/Stream';
-import { Shop, InteractiveJerseySVG } from './components/Shop';
 import { News } from './components/News';
 import { Sponsors } from './components/Sponsors';
 import { Footer } from './components/Footer';
@@ -12,15 +10,6 @@ import type { NewsItem } from './types';
 
 function App() {
     const [activeSection, setActiveSection] = useState('inicio');
-
-    // Estado del modal de Redirección / Compra Simplificada
-    const [checkoutOpen, setCheckoutOpen] = useState(false);
-    const [checkoutProduct, setCheckoutProduct] = useState<{
-        editionId: string;
-        editionName: string;
-        size: string;
-        price: string;
-    } | null>(null);
 
     // Estado del modal de Noticias
     const [newsOpen, setNewsOpen] = useState(false);
@@ -79,7 +68,7 @@ function App() {
     // 2. Rastreo de sección activa mediante Scroll
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['inicio', 'roster', 'streams', 'tienda', 'noticias'];
+            const sections = ['inicio', 'roster', 'noticias'];
             const scrollPosition = window.scrollY + 180;
 
             for (const section of sections) {
@@ -98,13 +87,7 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // 3. Abrir preventa / checkout modal
-    const openCheckout = (params: typeof checkoutProduct) => {
-        setCheckoutProduct(params);
-        setCheckoutOpen(true);
-    };
-
-    // 4. Abrir modal de Noticias
+    // 3. Abrir modal de Noticias
     const openNews = (news: NewsItem) => {
         setActiveNews(news);
         setNewsOpen(true);
@@ -112,10 +95,6 @@ function App() {
 
     const closeNewsModal = () => {
         setNewsOpen(false);
-    };
-
-    const closeCheckoutModal = () => {
-        setCheckoutOpen(false);
     };
 
     // Desplazamiento desde el Hero CTA
@@ -154,8 +133,6 @@ function App() {
             <main>
                 <Hero onCtaClick={handleCtaNavigate} />
                 <Roster />
-                <Stream />
-                <Shop onBuyClick={openCheckout} />
                 <News onNewsClick={openNews} />
                 <Sponsors />
             </main>
@@ -164,44 +141,7 @@ function App() {
             <Footer />
 
             {/* ==========================================
-                MODAL 1: CHECKOUT REDIRECTION POP-UP
-                ========================================== */}
-            <div className={`modal-overlay ${checkoutOpen ? 'show' : ''}`} onClick={closeCheckoutModal}>
-                <div className="modal-card" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '480px' }}>
-                    <button className="modal-close" onClick={closeCheckoutModal}>
-                        <i className="fa-solid fa-xmark"></i>
-                    </button>
-
-                    {checkoutProduct && (
-                        <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                            <div style={{ width: '80px', height: '100px', margin: '0 auto 20px auto' }}>
-                                <InteractiveJerseySVG edition={checkoutProduct.editionId} />
-                            </div>
-                            <h3 style={{ fontFamily: 'Orbitron', color: '#fff', fontSize: '20px', marginBottom: '10px' }}>
-                                TIENDA OFICIAL 9Z
-                            </h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '13px', lineHeight: '1.6', marginBottom: '20px' }}>
-                                Elegiste la <strong style={{ color: '#fff' }}>{checkoutProduct.editionName}</strong> en talle <strong style={{ color: 'var(--color-secondary)' }}>{checkoutProduct.size}</strong>.
-                                Hacé clic abajo para ser redirigido a la tienda oficial de preventas físicas y completar tu pedido.
-                            </p>
-
-                            <a 
-                                href="https://9z.gg/tienda" 
-                                target="_blank" 
-                                rel="noreferrer"
-                                className="btn btn-primary btn-glow"
-                                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', padding: '12px 30px' }}
-                                onClick={closeCheckoutModal}
-                            >
-                                <i className="fa-solid fa-square-arrow-up-right"></i> IR A TIENDA OFICIAL
-                            </a>
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* ==========================================
-                MODAL 2: CRÓNICA DE NOTICIAS
+                MODAL DE CRÓNICA DE NOTICIAS
                 ========================================== */}
             <div className={`modal-overlay ${newsOpen ? 'show' : ''}`} onClick={closeNewsModal}>
                 <div className="modal-card wide" onClick={(e) => e.stopPropagation()}>

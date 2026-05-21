@@ -22,8 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                     9Z GLOBANT OFFICIAL PORTAL
                 </div>
 
-                <div className="tag-glitch">#9ZFAMILY | #TODOVILETA</div>
-                
+
                 <h1 className="hero-title centered">
                     TODO VIOLETA. <br />
                     <span className="purple-glow-text">SIEMPRE 9Z</span>
@@ -44,9 +43,10 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                         Explorar Escuadras
                     </a>
                     <a 
-                        href="#tienda" 
+                        href="https://shop.9z.gg/shop"
+                        target="_blank"
+                        rel="noreferrer" 
                         className="btn btn-secondary"
-                        onClick={(e) => handleAction(e, 'tienda')}
                     >
                         <i className="fa-solid fa-shirt"></i>
                         Tienda Oficial
