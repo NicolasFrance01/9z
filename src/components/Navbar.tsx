@@ -64,7 +64,7 @@ export const Navbar: React.FC = () => {
                         src="/9z_logo.png"
                         alt="9Z Team Logo"
                         className="team-logo"
-                        style={{ width: '70px', height: 'auto', filter: 'drop-shadow(0px 0px 8px rgba(139,45,251,0.5))' }}
+                        style={{ width: '100px', height: 'auto', filter: 'drop-shadow(0px 0px 8px rgba(139,45,251,0.5))' }}
                     />
                 </a>
 
