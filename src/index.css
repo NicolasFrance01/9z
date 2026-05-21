@@ -414,7 +414,7 @@ body.btn-hover .custom-cursor-glow {
     width: 100vw;
     height: 100vh;
     /* imagen de fondo difuminada — guardar en public/hero_bg.png */
-    background-image: url('/hero_bg.png');
+    background-image: url('/hero_bg.jpeg');
     background-size: cover;
     background-position: center;
     filter: blur(3px) brightness(0.35) saturate(1.2);
