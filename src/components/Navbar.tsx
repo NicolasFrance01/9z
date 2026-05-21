@@ -39,7 +39,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
     const navItems = [
         { id: 'inicio', label: 'Inicio', icon: 'fa-house' },
-        { id: 'partidos', label: 'Partidos', icon: 'fa-gamepad' },
         { id: 'roster', label: 'Equipos', icon: 'fa-users' },
         { id: 'streams', label: 'Streams', icon: 'fa-tv' },
         { id: 'tienda', label: 'Tienda', icon: 'fa-shirt' },

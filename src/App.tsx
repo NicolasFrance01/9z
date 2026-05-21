@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Matches } from './components/Matches';
 import { Roster } from './components/Roster';
 import { Stream } from './components/Stream';
 import { Shop, InteractiveJerseySVG } from './components/Shop';
@@ -80,7 +79,7 @@ function App() {
     // 2. Rastreo de sección activa mediante Scroll
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['inicio', 'partidos', 'roster', 'streams', 'tienda', 'noticias'];
+            const sections = ['inicio', 'roster', 'streams', 'tienda', 'noticias'];
             const scrollPosition = window.scrollY + 180;
 
             for (const section of sections) {
@@ -154,7 +153,6 @@ function App() {
             {/* Contenido Principal */}
             <main>
                 <Hero onCtaClick={handleCtaNavigate} />
-                <Matches />
                 <Roster />
                 <Stream />
                 <Shop onBuyClick={openCheckout} />
